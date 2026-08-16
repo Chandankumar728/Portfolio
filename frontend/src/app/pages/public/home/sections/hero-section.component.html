@@ -1,0 +1,66 @@
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-copy">
+    <p class="eyebrow mono reveal-in d1">SOFTWARE ENGINEER · FULL STACK &amp; AI SYSTEMS</p>
+    <h1 class="reveal-in d2">{{ hero().name }}</h1>
+    <h2 class="reveal-in d3">{{ hero().designation }}</h2>
+    <p class="lead reveal-in d4">{{ hero().intro }}</p>
+
+    <div class="actions reveal-in d5">
+      <a routerLink="/projects" class="btn btn-primary">
+        <i class="fa-solid fa-diagram-project"></i> View My Work
+      </a>
+      <a routerLink="/contact" class="btn btn-outline">
+        <i class="fa-regular fa-paper-plane"></i> Let's Talk
+      </a>
+      <a [href]="hero().resumeUrl" class="btn btn-ghost" download>
+        <i class="fa-solid fa-download"></i> Resume
+      </a>
+    </div>
+
+    <div class="stat-row reveal-in d6">
+      <div>
+        <strong>{{ stats().experience }}</strong>
+        <span>Experience</span>
+      </div>
+      <div>
+        <strong>{{ projectsCount() }}</strong>
+        <span>Projects</span>
+      </div>
+      <div>
+        <strong>{{ clientsCount() }}</strong>
+        <span>Clients</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal-in d3" aria-hidden="true">
+    <div
+      class="panel"
+      [style]="tiltStyle()"
+      (mousemove)="onPanelMouseMove($event)"
+      (mouseleave)="onPanelMouseLeave()"
+    >
+      <div class="panel-head">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="panel-title mono">system-status.ts</span>
+      </div>
+      <div class="panel-body mono">
+        <p><span class="tok-kw">const</span> <span class="tok-var">stack</span> = &#123;</p>
+        <p class="indent"><span class="tok-key">frontend</span>: <span class="tok-str">'Angular'</span>,</p>
+        <p class="indent"><span class="tok-key">backend</span>: <span class="tok-str">'Spring Boot'</span>,</p>
+        <p class="indent"><span class="tok-key">database</span>: <span class="tok-str">'PostgreSQL'</span>,</p>
+        <p class="indent"><span class="tok-key">ai</span>: <span class="tok-str">'Google Gemini'</span></p>
+        <p>&#125;;</p>
+        <p class="blank"></p>
+        <p><span class="tok-kw">await</span> <span class="tok-fn">deploy</span>(stack);</p>
+        <p class="status-line"><span class="pulse-dot"></span> build passing · 3 services online</p>
+      </div>
+    </div>
+    <div class="floating-badge badge-1"><i class="fa-brands fa-angular"></i> Angular</div>
+    <div class="floating-badge badge-2"><i class="fa-solid fa-leaf"></i> Spring Boot</div>
+  </div>
+</section>

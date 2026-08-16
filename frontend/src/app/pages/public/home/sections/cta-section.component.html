@@ -1,0 +1,15 @@
+<section class="card cta-card" id="contact" appScrollReveal>
+  <div class="cta-content">
+    <p class="eyebrow mono">CONTACT</p>
+    <h3>Have a product idea? Let's build it.</h3>
+    <p class="lead">Whether you're building a new product, modernizing an existing system, or solving a complex technical problem, I'd love to hear about it.</p>
+  </div>
+  <div class="cta-actions">
+    <a routerLink="/contact" class="btn btn-primary">
+      <i class="fa-regular fa-paper-plane"></i> Start a Conversation
+    </a>
+    <a *ngIf="email()" [href]="'mailto:' + email()" class="btn btn-ghost">
+      <i class="fa-solid fa-envelope"></i> {{ email() }}
+    </a>
+  </div>
+</section>

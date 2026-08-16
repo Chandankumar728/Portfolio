@@ -1,0 +1,22 @@
+<section class="card about" appScrollReveal>
+  <div class="section-head">
+    <p class="eyebrow mono">ABOUT</p>
+    <h3>Engineering profile</h3>
+  </div>
+
+  <div class="about-grid">
+    <div class="identity-panel">
+      <img *ngIf="about().image" [src]="about().image" alt="Chandan Kumar" />
+      <div class="avatar-placeholder" *ngIf="!about().image">
+        <span>{{ initials() }}</span>
+      </div>
+      <div class="focus-tags" *ngIf="focusAreas().length">
+        <span class="chip" *ngFor="let area of focusAreas()">{{ area }}</span>
+      </div>
+    </div>
+
+    <div class="bio-panel">
+      <p class="bio">{{ about().bio }}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+.cta-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(129, 140, 248, 0.12));
+}
+
+.cta-content .lead {
+  margin-top: var(--space-2);
+  max-width: 480px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .cta-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-actions {
+    justify-content: center;
+  }
+}

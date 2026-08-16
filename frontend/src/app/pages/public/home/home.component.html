@@ -1,0 +1,16 @@
+<div class="home-loading" *ngIf="!portfolio()">
+  <div class="loading-spinner"></div>
+  <p>Loading portfolio…</p>
+</div>
+
+<ng-container *ngIf="portfolio() as data">
+  <app-hero-section [hero]="data.hero" [stats]="data.about" />
+  <app-about-section [about]="data.about" [focusAreas]="focusAreas()" />
+  <app-skills-section [skills]="skills()" />
+  <app-experience-section [experience]="experiences()" />
+  <app-education-section [education]="data.education" [certifications]="certifications()" />
+  <app-projects-preview-section [projects]="projects()" />
+  <app-testimonials-section [testimonials]="testimonials()" />
+  <app-approach-section />
+  <app-cta-section [email]="data.contact.email" />
+</ng-container>

@@ -1,0 +1,55 @@
+<div class="manager animate-in">
+  <div class="manager-header">
+    <div class="heading">
+      <span class="icon-badge"><i class="fa-solid fa-envelope"></i></span>
+      <div>
+        <h2>Messages</h2>
+        <p>{{ messages().length }} message{{ messages().length === 1 ? '' : 's' }} received</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner banner-success" *ngIf="success()">{{ success() }}</div>
+  <div class="banner banner-error" *ngIf="error()">{{ error() }}</div>
+
+  <div *ngIf="loading()" class="empty-state">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    <p>Loading messages…</p>
+  </div>
+
+  <div class="message-list" *ngIf="!loading() && messages().length" [@staggerIn]="messages().length">
+    <div class="message-card" *ngFor="let msg of messages()" [class.expanded]="expandedId() === msg.id">
+      <div class="message-summary" (click)="toggleExpanded(msg.id)">
+        <div class="avatar">{{ msg.name.charAt(0).toUpperCase() }}</div>
+        <div class="summary-text">
+          <h4>{{ msg.subject }}</h4>
+          <p>{{ msg.name }} · {{ msg.email }}</p>
+        </div>
+        <i class="fa-solid fa-chevron-down chevron"></i>
+      </div>
+      <div class="message-body" *ngIf="expandedId() === msg.id">
+        <p>{{ msg.message }}</p>
+        <div class="form-actions">
+          <a class="btn btn-outline" href="mailto:{{ msg.email }}"><i class="fa-solid fa-reply"></i> Reply</a>
+          <button class="btn btn-danger" (click)="confirmDelete(msg.id)"><i class="fa-solid fa-trash"></i> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading() && !messages().length">
+    <i class="fa-solid fa-inbox"></i>
+    <p>No messages yet.</p>
+  </div>
+
+  <div class="confirm-overlay" *ngIf="deletingId() !== null">
+    <div class="confirm-card animate-in">
+      <h4>Delete this message?</h4>
+      <p>This action cannot be undone.</p>
+      <div class="form-actions">
+        <button class="btn btn-outline" (click)="cancelDelete()">Cancel</button>
+        <button class="btn btn-danger" (click)="deleteConfirmed()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="dashboard animate-in">
+  <div class="manager-header">
+    <div class="heading">
+      <span class="icon-badge"><i class="fa-solid fa-gauge"></i></span>
+      <div>
+        <h2>Dashboard</h2>
+        <p>Overview of your portfolio content</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="loading()">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    <p>Loading dashboard…</p>
+  </div>
+
+  <div class="dashboard-grid" *ngIf="!loading()" [@staggerIn]="cards().length">
+    <a class="stat-card" *ngFor="let card of cards()" [routerLink]="card.link">
+      <span class="stat-icon"><i [class]="card.icon"></i></span>
+      <div>
+        <p class="stat-value">{{ card.value }}</p>
+        <p class="stat-title">{{ card.title }}</p>
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+.timeline {
+  position: relative;
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--color-border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: var(--space-6);
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: calc(-1 * var(--space-6) - 1px);
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  box-shadow: 0 0 0 4px var(--color-bg);
+}
+
+.timeline-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.timeline-content h4 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.duration {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.company {
+  color: var(--color-accent);
+  margin: 0.3rem 0 0.6rem;
+  font-weight: 600;
+}
+
+.description {
+  color: var(--color-text-dim);
+  line-height: 1.7;
+  margin: 0 0 0.8rem;
+}
+
+.chip-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

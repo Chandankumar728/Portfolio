@@ -1,0 +1,29 @@
+<section class="card" appScrollReveal>
+  <div class="section-head">
+    <p class="eyebrow mono">SELECTED PROJECTS</p>
+    <h3>High-impact products shipped</h3>
+  </div>
+
+  <div class="project-grid" [@staggerIn]="preview().length">
+    <article class="project-card" *ngFor="let project of preview()">
+      <div class="project-image">
+        <img *ngIf="project.image" [src]="project.image" [alt]="project.title" />
+        <div class="project-image-placeholder" *ngIf="!project.image">
+          <i class="fa-solid fa-diagram-project"></i>
+        </div>
+        <span class="status-badge" *ngIf="project.status">{{ project.status }}</span>
+      </div>
+      <div class="project-content">
+        <h4>{{ project.title }}</h4>
+        <p>{{ project.description }}</p>
+        <div class="chip-row">
+          <span class="chip" *ngFor="let stack of project.techStack">{{ stack }}</span>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="see-all">
+    <a routerLink="/projects" class="btn btn-outline">See all projects <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>

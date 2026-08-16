@@ -1,0 +1,47 @@
+<h1 class="visually-hidden">Contact — Chandan Kumar</h1>
+<section class="card contact-card animate-in">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="eyebrow mono">CONTACT</p>
+      <h3>Let's build something meaningful together</h3>
+      <p class="lead">Have a project in mind, a system that needs modernizing, or a technical problem worth solving? I'd love to hear about it.</p>
+
+      <ul class="contact-methods" *ngIf="contact() as info">
+        <li *ngIf="info.email">
+          <a [href]="'mailto:' + info.email"><i class="fa-solid fa-envelope"></i> {{ info.email }}</a>
+        </li>
+        <li *ngIf="info.phone">
+          <a [href]="'tel:' + info.phone"><i class="fa-solid fa-phone"></i> {{ info.phone }}</a>
+        </li>
+        <li *ngIf="info.linkedinUrl">
+          <a [href]="info.linkedinUrl" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </li>
+        <li *ngIf="info.githubUrl">
+          <a [href]="info.githubUrl" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-form-panel">
+      <div class="banner banner-success" *ngIf="submitted()">
+        <i class="fa-solid fa-circle-check"></i> Thanks for reaching out! I'll get back to you soon.
+      </div>
+      <div class="banner banner-error" *ngIf="error()">{{ error() }}</div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="contact-form">
+        <label class="visually-hidden" for="contact-name">Name</label>
+        <input id="contact-name" formControlName="name" placeholder="Name" />
+        <label class="visually-hidden" for="contact-email">Email</label>
+        <input id="contact-email" formControlName="email" placeholder="Email" />
+        <label class="visually-hidden" for="contact-subject">Subject</label>
+        <input id="contact-subject" formControlName="subject" placeholder="Subject" />
+        <label class="visually-hidden" for="contact-message">Message</label>
+        <textarea id="contact-message" formControlName="message" placeholder="Message"></textarea>
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid || submitting()">
+          <i class="fa-solid" [class.fa-spinner]="submitting()" [class.fa-spin]="submitting()" [class.fa-paper-plane]="!submitting()"></i>
+          {{ submitting() ? 'Sending…' : 'Send Message' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

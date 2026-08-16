@@ -1,0 +1,115 @@
+.entity-form {
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  animation: fadeSlideUp 0.35s var(--ease-out) both;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field-wide {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.field input,
+.field textarea {
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.entity-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.entity-table th,
+.entity-table td {
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  text-transform: capitalize;
+}
+
+.entity-table th {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.entity-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.entity-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.entity-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.actions-col {
+  white-space: nowrap;
+  width: 1%;
+}
+
+.icon-btn {
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 0.6rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.icon-btn.danger:hover {
+  border-color: #f87171;
+  color: #f87171;
+}

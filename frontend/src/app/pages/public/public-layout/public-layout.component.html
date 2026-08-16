@@ -1,0 +1,59 @@
+<div class="site-shell">
+  <header class="topbar" [class.scrolled]="scrolled()">
+    <a class="brand" routerLink="/" (click)="closeMobileMenu()">Chandan Kumar</a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a routerLink="/projects" routerLinkActive="active">Projects</a>
+      <a routerLink="/blogs" routerLinkActive="active">Blogs</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+      <a routerLink="/admin" routerLinkActive="active">Admin</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a *ngIf="contact()?.githubUrl" [href]="contact()?.githubUrl" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub profile">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a *ngIf="contact()?.linkedinUrl" [href]="contact()?.linkedinUrl" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn profile">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a routerLink="/contact" class="btn btn-primary nav-cta">Let's Talk</a>
+    </div>
+
+    <button
+      class="hamburger"
+      [class.active]="mobileMenuOpen()"
+      type="button"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-label="Toggle navigation menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <div class="mobile-panel" *ngIf="mobileMenuOpen()">
+    <nav class="mobile-nav" aria-label="Primary">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">Home</a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMobileMenu()">Projects</a>
+      <a routerLink="/blogs" routerLinkActive="active" (click)="closeMobileMenu()">Blogs</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMobileMenu()">Contact</a>
+      <a routerLink="/admin" routerLinkActive="active" (click)="closeMobileMenu()">Admin</a>
+    </nav>
+    <div class="mobile-socials">
+      <a *ngIf="contact()?.githubUrl" [href]="contact()?.githubUrl" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fa-brands fa-github"></i></a>
+      <a *ngIf="contact()?.linkedinUrl" [href]="contact()?.linkedinUrl" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
+      <a *ngIf="contact()?.email" [href]="'mailto:' + contact()?.email" aria-label="Send email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+
+  <main [@routeFade]="routeKey(outlet)">
+    <router-outlet #outlet="outlet" />
+  </main>
+
+  <footer class="footer">
+    <p>© {{ year }} Chandan Kumar.</p>
+  </footer>
+</div>

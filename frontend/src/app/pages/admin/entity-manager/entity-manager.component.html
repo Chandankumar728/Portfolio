@@ -1,0 +1,86 @@
+<div class="manager animate-in" *ngIf="config">
+  <div class="manager-header">
+    <div class="heading">
+      <span class="icon-badge"><i [class]="config.icon"></i></span>
+      <div>
+        <h2>{{ config.title }}</h2>
+        <p>{{ items().length }} {{ items().length === 1 ? config.singularLabel.toLowerCase() : config.title.toLowerCase() }}</p>
+      </div>
+    </div>
+    <button class="btn btn-primary" (click)="openCreate()" *ngIf="!formOpen()">
+      <i class="fa-solid fa-plus"></i> New {{ config.singularLabel }}
+    </button>
+  </div>
+
+  <div class="banner banner-success" *ngIf="success()">{{ success() }}</div>
+  <div class="banner banner-error" *ngIf="error()">{{ error() }}</div>
+
+  <form class="entity-form" *ngIf="formOpen()" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field-grid">
+      <div class="field" *ngFor="let field of config.fields" [class.field-wide]="field.type === 'textarea'">
+        <label>{{ field.label }}</label>
+        <input
+          *ngIf="field.type === 'text' || field.type === 'tags'"
+          type="text"
+          [formControlName]="field.key"
+        />
+        <input *ngIf="field.type === 'number'" type="number" [formControlName]="field.key" />
+        <input *ngIf="field.type === 'date'" type="date" [formControlName]="field.key" />
+        <textarea *ngIf="field.type === 'textarea'" rows="4" [formControlName]="field.key"></textarea>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn btn-outline" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        {{ editingId() ? 'Save Changes' : 'Create' }}
+      </button>
+    </div>
+  </form>
+
+  <div class="table-wrap" *ngIf="!loading(); else loadingState">
+    <table class="entity-table" *ngIf="items().length; else emptyState">
+      <thead>
+        <tr>
+          <th *ngFor="let col of config.columns">{{ col }}</th>
+          <th class="actions-col">Actions</th>
+        </tr>
+      </thead>
+      <tbody [@staggerIn]="items().length">
+        <tr *ngFor="let item of items()">
+          <td *ngFor="let col of config.columns">{{ item[col] }}</td>
+          <td class="actions-col">
+            <button class="icon-btn" (click)="openEdit(item)" title="Edit">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button class="icon-btn danger" (click)="confirmDelete(item['id'])" title="Delete">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <i class="fa-solid fa-inbox"></i>
+        <p>No {{ config.title.toLowerCase() }} yet. Create your first {{ config.singularLabel.toLowerCase() }}.</p>
+      </div>
+    </ng-template>
+  </div>
+  <ng-template #loadingState>
+    <div class="empty-state">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      <p>Loading {{ config.title.toLowerCase() }}…</p>
+    </div>
+  </ng-template>
+
+  <div class="confirm-overlay" *ngIf="deletingId() !== null">
+    <div class="confirm-card animate-in">
+      <h4>Delete this {{ config.singularLabel.toLowerCase() }}?</h4>
+      <p>This action cannot be undone.</p>
+      <div class="form-actions">
+        <button class="btn btn-outline" (click)="cancelDelete()">Cancel</button>
+        <button class="btn btn-danger" (click)="deleteConfirmed()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

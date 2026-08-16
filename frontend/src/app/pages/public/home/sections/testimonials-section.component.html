@@ -1,0 +1,18 @@
+<section class="card" *ngIf="testimonials().length" appScrollReveal>
+  <div class="section-head">
+    <p class="eyebrow mono">TESTIMONIALS</p>
+    <h3>What clients and teammates say</h3>
+  </div>
+  <div class="testimonial-grid" [@staggerIn]="testimonials().length">
+    <figure class="testimonial-card" *ngFor="let testimonial of testimonials()">
+      <div class="rating">
+        <i class="fa-solid fa-star" *ngFor="let star of stars(testimonial.rating)"></i>
+      </div>
+      <blockquote>“{{ testimonial.review }}”</blockquote>
+      <figcaption>
+        <strong>{{ testimonial.name }}</strong>
+        <span>{{ testimonial.company }}</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>

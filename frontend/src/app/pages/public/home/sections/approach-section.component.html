@@ -1,0 +1,28 @@
+<section class="card" appScrollReveal>
+  <div class="section-head">
+    <p class="eyebrow mono">ENGINEERING APPROACH</p>
+    <h3>How I work</h3>
+  </div>
+
+  <div class="steps-grid" [@staggerIn]="steps.length">
+    <div class="step" *ngFor="let step of steps">
+      <span class="step-index mono">{{ step.index }}</span>
+      <i [class]="step.icon"></i>
+      <h4>{{ step.title }}</h4>
+      <p>{{ step.description }}</p>
+    </div>
+  </div>
+
+  <div class="stack-diagram">
+    <p class="stack-label mono">THIS PROJECT'S STACK</p>
+    <div class="stack-row">
+      <div class="stack-node" *ngFor="let node of stack; let last = last">
+        <div class="node">
+          <i [class]="node.icon"></i>
+          <span>{{ node.label }}</span>
+        </div>
+        <i class="fa-solid fa-arrow-right stack-arrow" *ngIf="!last"></i>
+      </div>
+    </div>
+  </div>
+</section>

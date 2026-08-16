@@ -1,0 +1,124 @@
+<div class="manager animate-in">
+  <div class="manager-header">
+    <div class="heading">
+      <span class="icon-badge"><i class="fa-solid fa-gear"></i></span>
+      <div>
+        <h2>Settings</h2>
+        <p>Hero &amp; about section content</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="banner banner-success" *ngIf="success()">{{ success() }}</div>
+  <div class="banner banner-error" *ngIf="error()">{{ error() }}</div>
+
+  <div class="empty-state" *ngIf="loading()">
+    <i class="fa-solid fa-spinner fa-spin"></i>
+    <p>Loading settings…</p>
+  </div>
+
+  <form class="settings-form" *ngIf="!loading()" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-section">
+      <h4>Hero</h4>
+      <div class="field-grid">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" formControlName="heroName" />
+        </div>
+        <div class="field">
+          <label>Designation</label>
+          <input type="text" formControlName="heroDesignation" />
+        </div>
+        <div class="field field-wide">
+          <label>Intro</label>
+          <textarea rows="3" formControlName="heroIntro"></textarea>
+        </div>
+        <div class="field">
+          <label>Resume URL</label>
+          <input type="text" formControlName="resumeUrl" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h4>About</h4>
+      <div class="field-grid">
+        <div class="field field-wide">
+          <label>Bio</label>
+          <textarea rows="4" formControlName="aboutBio"></textarea>
+        </div>
+        <div class="field">
+          <label>Experience Summary</label>
+          <input type="text" formControlName="aboutExperience" />
+        </div>
+        <div class="field">
+          <label>Projects Completed</label>
+          <input type="number" formControlName="aboutProjectsCompleted" />
+        </div>
+        <div class="field">
+          <label>Clients</label>
+          <input type="number" formControlName="aboutClients" />
+        </div>
+        <div class="field field-wide">
+          <label>About Image URL</label>
+          <input type="text" formControlName="aboutImage" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h4>Contact</h4>
+      <div class="field-grid">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" formControlName="email" />
+        </div>
+        <div class="field">
+          <label>Phone</label>
+          <input type="text" formControlName="phone" />
+        </div>
+        <div class="field">
+          <label>LinkedIn URL</label>
+          <input type="text" formControlName="linkedinUrl" />
+        </div>
+        <div class="field">
+          <label>GitHub URL</label>
+          <input type="text" formControlName="githubUrl" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h4>Education</h4>
+      <div class="field-grid">
+        <div class="field">
+          <label>Institution</label>
+          <input type="text" formControlName="educationInstitution" />
+        </div>
+        <div class="field">
+          <label>Degree</label>
+          <input type="text" formControlName="educationDegree" />
+        </div>
+        <div class="field">
+          <label>Score</label>
+          <input type="text" formControlName="educationScore" />
+        </div>
+        <div class="field">
+          <label>Duration</label>
+          <input type="text" formControlName="educationDuration" />
+        </div>
+        <div class="field">
+          <label>Location</label>
+          <input type="text" formControlName="educationLocation" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid || saving()">
+        <i class="fa-solid" [class.fa-spinner]="saving()" [class.fa-spin]="saving()" [class.fa-floppy-disk]="!saving()"></i>
+        {{ saving() ? 'Saving…' : 'Save Changes' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="admin-shell">
+  <aside class="sidebar">
+    <h3><i class="fa-solid fa-user-shield"></i> Portfolio Admin</h3>
+    <nav>
+      <a routerLink="/admin/dashboard" routerLinkActive="active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+      <a routerLink="/admin/projects" routerLinkActive="active"><i class="fa-solid fa-diagram-project"></i> Projects</a>
+      <a routerLink="/admin/blogs" routerLinkActive="active"><i class="fa-solid fa-newspaper"></i> Blogs</a>
+      <a routerLink="/admin/skills" routerLinkActive="active"><i class="fa-solid fa-layer-group"></i> Skills</a>
+      <a routerLink="/admin/experience" routerLinkActive="active"><i class="fa-solid fa-briefcase"></i> Experience</a>
+      <a routerLink="/admin/testimonials" routerLinkActive="active"><i class="fa-solid fa-quote-left"></i> Testimonials</a>
+      <a routerLink="/admin/certifications" routerLinkActive="active"><i class="fa-solid fa-certificate"></i> Certifications</a>
+      <a routerLink="/admin/messages" routerLinkActive="active"><i class="fa-solid fa-envelope"></i> Messages</a>
+      <a routerLink="/admin/settings" routerLinkActive="active"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <p class="signed-in-as" *ngIf="authService.currentUser() as user">
+        <i class="fa-solid fa-circle-user"></i> {{ user }}
+      </p>
+      <a class="back-to-site" routerLink="/"><i class="fa-solid fa-arrow-left"></i> Back to site</a>
+      <button class="logout-btn" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+  <section class="content" [@routeFade]="routeKey(outlet)">
+    <router-outlet #outlet="outlet" />
+  </section>
+</div>

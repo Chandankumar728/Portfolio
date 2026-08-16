@@ -1,0 +1,45 @@
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.testimonial-card {
+  background: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin: 0;
+  border: 1px solid transparent;
+  transition: transform 0.3s var(--ease-out), border-color 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.rating {
+  color: #facc15;
+  margin-bottom: 0.6rem;
+}
+
+.testimonial-card blockquote {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-dim);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.testimonial-card figcaption {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card figcaption strong {
+  color: #fff;
+}
+
+.testimonial-card figcaption span {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}

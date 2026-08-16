@@ -1,0 +1,32 @@
+<section class="card" *ngIf="education().institution || certifications().length" appScrollReveal>
+  <div class="section-head">
+    <p class="eyebrow mono">EDUCATION &amp; CERTIFICATIONS</p>
+    <h3>Academic background &amp; credentials</h3>
+  </div>
+
+  <div class="education-grid">
+    <div class="education-card" *ngIf="education().institution">
+      <div class="education-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div>
+        <h4>{{ education().institution }}</h4>
+        <p class="degree">{{ education().degree }}</p>
+        <div class="education-meta">
+          <span *ngIf="education().duration"><i class="fa-regular fa-calendar"></i> {{ education().duration }}</span>
+          <span *ngIf="education().location"><i class="fa-solid fa-location-dot"></i> {{ education().location }}</span>
+          <span *ngIf="education().score"><i class="fa-solid fa-star"></i> {{ education().score }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="certifications" *ngIf="certifications().length" [@staggerIn]="certifications().length">
+      <div class="certification-card" *ngFor="let cert of certifications()">
+        <i class="fa-solid fa-certificate"></i>
+        <div>
+          <h5>{{ cert.name }}</h5>
+          <p class="issuer">{{ cert.issuer }}<span *ngIf="cert.year"> · {{ cert.year }}</span></p>
+          <p class="description" *ngIf="cert.description">{{ cert.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

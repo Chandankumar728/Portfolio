@@ -1,0 +1,24 @@
+<section class="card" appScrollReveal>
+  <div class="section-head">
+    <p class="eyebrow mono">SKILLS</p>
+    <h3>Technologies I work with</h3>
+  </div>
+
+  <div class="skill-groups">
+    <div class="skill-group" *ngFor="let group of groups()">
+      <h4 class="group-title">{{ group.category }}</h4>
+      <div class="skill-grid" [@staggerIn]="group.skills.length">
+        <div class="skill-card" *ngFor="let skill of group.skills">
+          <i [class]="skill.icon"></i>
+          <div class="skill-info">
+            <h5>{{ skill.name }}</h5>
+            <span>{{ skill.experience }}</span>
+          </div>
+          <div class="progress">
+            <div [style.width.%]="animated() ? skill.percentage : 0"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
