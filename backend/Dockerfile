@@ -10,5 +10,5 @@ WORKDIR /app
 COPY --from=builder /app/target/backend-1.0.0.jar app.jar
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-Dserver.port=$PORT", "-jar", "app.jar"]
+# Run the application with proper port binding
+CMD ["sh", "-c", "java -Dserver.port=${PORT:-8080} -jar app.jar"]
