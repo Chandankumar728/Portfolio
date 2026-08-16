@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: portfolio-backend
+    runtime: java
+    plan: free
+    buildCommand: cd backend && mvn clean install -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/backend-1.0.0.jar
+    workingDirectory: backend
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: JAVA_OPTS
+        value: "-Dserver.port=$PORT"
