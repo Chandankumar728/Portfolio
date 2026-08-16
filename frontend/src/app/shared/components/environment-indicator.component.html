@@ -1,8 +1,8 @@
 <div class="environment-indicator" [ngClass]="getIndicatorClass()">
   <span class="status-badge" [ngClass]="getStatusClass()">
-    {{ environmentInfo.deploymentStatus }}
+    {{ environmentInfo().deploymentStatus }}
   </span>
   <span class="details">
-    {{ environmentInfo.currentHostname }} | {{ environmentInfo.apiUrl }}
+    {{ environmentInfo().currentHostname }} | {{ environmentInfo().apiUrl }}
   </span>
 </div>
