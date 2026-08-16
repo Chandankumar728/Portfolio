@@ -23,12 +23,19 @@ export class AuthService {
   readonly currentUser = signal<string | null>(null);
 
   constructor(private http: HttpClient) {
+    console.log('🔐 AuthService initialized');
+    console.log('📡 AuthService API URL:', this.apiUrl);
     this.restoreSession();
   }
 
   login(payload: LoginPayload): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, payload).pipe(
+    const loginUrl = `${this.apiUrl}/auth/login`;
+    console.log('🔑 Attempting login to:', loginUrl);
+    console.log('📨 Login payload:', payload);
+    
+    return this.http.post<AuthResponse>(loginUrl, payload).pipe(
       tap((response) => {
+        console.log('✅ Login successful for user:', response.username);
         localStorage.setItem(this.tokenKey, response.token);
         localStorage.setItem(this.userKey, response.username);
         this.isAuthenticated.set(true);

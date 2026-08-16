@@ -109,10 +109,15 @@ export interface PortfolioData {
 export class PortfolioDataService {
   private readonly apiUrl = `${getApiUrl()}/public`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('🎨 PortfolioDataService initialized');
+    console.log('📡 Portfolio API URL:', this.apiUrl);
+  }
 
   getPortfolioData(): Observable<PortfolioData> {
-    return this.http.get<PortfolioData>(`${this.apiUrl}/portfolio`).pipe(
+    const url = `${this.apiUrl}/portfolio`;
+    console.log('📥 Fetching portfolio data from:', url);
+    return this.http.get<PortfolioData>(url).pipe(
       catchError(() => of(this.createMockData()))
     );
   }

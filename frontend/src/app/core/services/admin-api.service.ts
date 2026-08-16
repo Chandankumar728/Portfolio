@@ -40,7 +40,10 @@ export type AdminResource = 'projects' | 'blogs' | 'skills' | 'experience' | 'te
 export class AdminApiService {
   private readonly baseUrl = `${getApiUrl()}/admin`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('📊 AdminApiService initialized');
+    console.log('📡 Admin API Base URL:', this.baseUrl);
+  }
 
   list<T>(resource: AdminResource): Observable<T[]> {
     return this.http.get<T[]>(`${this.baseUrl}/${resource}`);
