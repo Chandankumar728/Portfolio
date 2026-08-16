@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { getApiUrl } from './api-config';
+import { getApiUrl } from '../config/api-config';
 
 export interface EnvironmentInfo {
   apiUrl: string;
