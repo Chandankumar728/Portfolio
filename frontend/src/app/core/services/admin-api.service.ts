@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { getApiUrl } from '../config/api-config';
 import { Blog, Certification, ExperienceItem, Project, Skill, Testimonial } from './portfolio-data.service';
 
 export interface ContactMessage {
@@ -38,7 +38,7 @@ export type AdminResource = 'projects' | 'blogs' | 'skills' | 'experience' | 'te
 
 @Injectable({ providedIn: 'root' })
 export class AdminApiService {
-  private readonly baseUrl = `${environment.apiUrl}/admin`;
+  private readonly baseUrl = `${getApiUrl()}/admin`;
 
   constructor(private http: HttpClient) {}
 

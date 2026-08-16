@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { getApiUrl } from '../config/api-config';
 
 export interface LoginPayload {
   username: string;
@@ -18,7 +18,7 @@ export interface AuthResponse {
 export class AuthService {
   private readonly tokenKey = 'portfolio-token';
   private readonly userKey = 'portfolio-user';
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = getApiUrl();
   readonly isAuthenticated = signal(false);
   readonly currentUser = signal<string | null>(null);
 
