@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface LoginPayload {
   username: string;
@@ -17,6 +18,7 @@ export interface AuthResponse {
 export class AuthService {
   private readonly tokenKey = 'portfolio-token';
   private readonly userKey = 'portfolio-user';
+  private readonly apiUrl = environment.apiUrl;
   readonly isAuthenticated = signal(false);
   readonly currentUser = signal<string | null>(null);
 
@@ -25,7 +27,7 @@ export class AuthService {
   }
 
   login(payload: LoginPayload): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>('/api/auth/login', payload).pipe(
+    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, payload).pipe(
       tap((response) => {
         localStorage.setItem(this.tokenKey, response.token);
         localStorage.setItem(this.userKey, response.username);
