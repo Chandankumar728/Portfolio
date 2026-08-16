@@ -32,7 +32,7 @@ export class AuthService {
     const loginUrl = `${this.apiUrl}/auth/login`;
     console.log('🔑 Attempting login to:', loginUrl);
     console.log('📨 Login payload:', payload);
-    
+
     return this.http.post<AuthResponse>(loginUrl, payload).pipe(
       tap((response) => {
         console.log('✅ Login successful for user:', response.username);
