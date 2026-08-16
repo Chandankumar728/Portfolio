@@ -3,7 +3,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  if (!req.url.startsWith('/api/admin')) {
+  if (!req.url.includes('/api/admin')) {
     return next(req);
   }
 
