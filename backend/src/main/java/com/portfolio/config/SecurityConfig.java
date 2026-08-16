@@ -49,10 +49,21 @@ public class SecurityConfig {
   @Bean
   public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOriginPatterns(List.of("http://localhost:*", "http://127.0.0.1:*"));
+    
+    // Allow multiple origins: localhost for development, Vercel for production
+    List<String> allowedOrigins = List.of(
+      "http://localhost:4200",          // Angular dev server
+      "http://127.0.0.1:4200",          // Local IP
+      "http://localhost:3000",          // Node dev server if used
+      "https://*.vercel.app"            // All Vercel deployments
+    );
+    configuration.setAllowedOriginPatterns(allowedOrigins);
+    
     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     configuration.setAllowedHeaders(List.of("*"));
     configuration.setAllowCredentials(true);
+    configuration.setMaxAge(3600L);  // Cache preflight for 1 hour
+    
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;

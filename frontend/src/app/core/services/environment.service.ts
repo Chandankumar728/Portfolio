@@ -12,7 +12,7 @@ export interface EnvironmentInfo {
 @Injectable({ providedIn: 'root' })
 export class EnvironmentService {
   private apiUrl = getApiUrl();
-  
+
   environmentInfo = signal<EnvironmentInfo>({
     apiUrl: this.apiUrl,
     isProduction: !this.apiUrl.includes('localhost'),
@@ -27,7 +27,7 @@ export class EnvironmentService {
 
   private getDeploymentStatus(): string {
     if (typeof window === 'undefined') return 'SSR Mode';
-    
+
     const hostname = window.location.hostname;
     if (hostname === 'localhost' || hostname === '127.0.0.1') {
       return '🟡 LOCAL DEVELOPMENT';

@@ -1,24 +1,32 @@
 export const getApiUrl = (): string => {
-  console.log('=== API URL DETECTION STARTED ===');
+  // PRODUCTION URL - Force Render backend for all non-localhost environments
+  const RENDER_BACKEND_URL = 'https://portfolio-0zf6.onrender.com/api';
+  
+  console.log('%c🔍 API URL DETECTION STARTED', 'color: cyan; font-weight: bold;');
 
-  // Check if localhost (for local development only)
-  if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-    const url = 'http://localhost:8080/api';
-    console.log('✅ LOCALHOST DETECTED - Using local backend:', url);
-    return url;
+  if (typeof window === 'undefined') {
+    console.log('%c🔗 SSR Mode - Using Render backend', 'color: orange;');
+    return RENDER_BACKEND_URL;
   }
 
-  // For ALL other environments (Vercel, production, etc.)
-  // ALWAYS use Render backend - NO other logic
-  const renderBackendUrl = 'https://portfolio-0zf6.onrender.com/api';
-  console.log('✅ USING RENDER BACKEND (production):', renderBackendUrl);
-
-  if (typeof window !== 'undefined') {
-    console.log('🌐 Running on hostname:', window.location.hostname);
-    console.log('🔗 Running on URL:', window.location.href);
+  const hostname = window.location.hostname;
+  
+  // ONLY use localhost for local development
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    const localUrl = 'http://localhost:8080/api';
+    console.log('%c✅ LOCALHOST DETECTED - Using local backend', 'color: yellow; font-weight: bold;');
+    console.log('%c📍 Hostname:', `${hostname}`, 'color: yellow;');
+    console.log('%c🔗 API URL:', localUrl, 'color: yellow;');
+    return localUrl;
   }
 
-  return renderBackendUrl;
+  // For Vercel, production, or any other environment
+  console.log('%c✅ PRODUCTION ENVIRONMENT - Using Render backend', 'color: lime; font-weight: bold;');
+  console.log('%c📍 Hostname:', `${hostname}`, 'color: lime;');
+  console.log('%c🔗 API URL:', RENDER_BACKEND_URL, 'color: lime;');
+  console.log('%c🌐 Full URL:', window.location.href, 'color: lime;');
+
+  return RENDER_BACKEND_URL;
 };
 
 
